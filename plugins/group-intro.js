@@ -1,22 +1,26 @@
-import fs from 'fs'
-let handler = async (m, {text, usedPrefix, command, conn}) => {
+let handler = async m => {
 
+let krtu = `Kartu Intro`
+m.reply(`
+*WELCOME TO MY GROUP*
 
-let krtu = `0ཻུ۪۪ꦽꦼ̷⸙‹•══════════════♡᭄
-│       *「 Kartu Intro 」*
-│ *Nama     :* 
-│ *Gender   :* 
-│ *Umur      :* 
-│ *Hobby    :* 
-│ *Kelas      :* 
-│ *Asal         :* 
-│ *Agama    :* 
- |  *Status     :* 
-╰═════ꪶ ཻུ۪۪ꦽꦼ̷⸙ ━ ━ ━ ━ ꪶ ཻུ۪۪ꦽꦼ̷⸙
-`
-conn.fakeReply(m.chat, krtu, '0@s.whatsapp.net', wm)
+Silahkan di isi intro di bawah ini.
+
+╭════•›℘ ━ ━ ━ ━ ℘‹•════
+│       *INTRO*
+ |々 _Nama_ *:* 
+ |々 _Umur_ *:* 
+ l々 _Gender_ *:* 
+ l々 _Asal_ *:* 
+ |々 _Husbu/Waifu_ *:* 
+ l々 _Anime favorit_ *:* 
+ |々 _Tujuan masuk gc_ *:* 
+╰════•›℘ ━ ━ ━ ━ ℘‹•════
+
+*Selamat bergabung dan semoga betah.*
+`.trim()) // Tambah sendiri kalo mau
 }
 handler.command = /^(intro)$/i
 handler.group = true
 
-export default handler
+export default handler 
