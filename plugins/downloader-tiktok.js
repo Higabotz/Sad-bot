@@ -9,11 +9,11 @@ if (!args[0]) throw `Use example ${usedPrefix}${command} https://www.tiktok.com/
 *Nickname:* ${nickname}
 *Description:* ${description}
 
-_©Sad-Bot_
+『𝐎𝐫𝐞𝐤𝐢 - 𝐛𝐨𝐭𝐳』• ⁿᵉʷ
 `.trim(), m)
 }
 handler.help = ['tiktok', 'tiktok', 'tiktokdl'].map(v => v + ' <url>')
 handler.tags = ['downloader']
 handler.command = /^(tik(tok)?(tok)?(dl)?)$/i
-
+handler.register = false
 export default handler
