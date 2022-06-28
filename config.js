@@ -9,9 +9,9 @@ global.owner = [
 ] // Put your number here
 global.mods = [] // Want some help?
 global.prems = [
-  ['6285601700562'],
-  ['6281326162010'],
-  ['6282112731309'],
+
+
+
 ] // Premium user has unlimited limit
 global.lolkey = 'd9daaf877306a59fca12a046'
 global.xkey = 'd37372311698ed1d'
