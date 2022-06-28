@@ -277,7 +277,7 @@ if (!isNumber(user.ayam)) user.ayam = 0
               wallet: 0,
               bank: 0,
               health: 100,
-              limit: 100,
+              limit: 20,
               potion: 10,
               trash: 0,
               wood: 0,
@@ -429,7 +429,7 @@ esteh: 0,
 	                sPromote: '',
 	                sDemote: '',
 	                antiDelete: false,
-	                antiLink: false,
+	                antiLink: true,
 	                viewOnce: false,
 			simi: false,
                         nsfw: false,
@@ -447,8 +447,8 @@ esteh: 0,
                 if (!('restrict' in settings)) settings.restrict = false
             } else global.db.data.settings[this.user.jid] = {
                 self: false,
-                autoread: false,
-                restrict: false
+                autoread: true,
+                restrict: true
             }
         } catch (e) {
             console.error(e)
@@ -732,46 +732,48 @@ export async function participantsUpdate({ id, participants, action }) {
     let text = ''
     switch (action) {
         case 'add':
-        case 'remove':
-            if (chat.welcome) {
-                let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
-                for (let user of participants) {
-                    let pp = './src/avatar_contact.png'
-                    let ppgc = './src/avatar_contact.png'
-                    try {
-                        pp = await this.profilePictureUrl(user, 'image')
-                        ppgc = await this.profilePictureUrl(id, 'image')
-                    } catch (e) {
-                    } finally {
-                        text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
-                            (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', await this.getName(user))
-              let wel = await new knights.Welcome()
-                .setUsername(this.getName(user))
-                .setGuildName(groupMetadata.subject)
-                .setGuildIcon(ppgc)
-                .setMemberCount(groupMetadata.participants.length)
-                .setAvatar(pp)
-                .setBackground("https://telegra.ph/file/4b90043328ec4825c0e71.jpg")
-                .toAttachment()
 
-              let lea = await new knights.Goodbye()
-                .setUsername(this.getName(user))
-                .setGuildName(groupMetadata.subject)
-                .setGuildIcon(ppgc)
-                .setMemberCount(groupMetadata.participants.length)
-                .setAvatar(pp)
-                .setBackground("https://telegra.ph/file/4b90043328ec4825c0e71.jpg")
-                .toAttachment()
-                            
-                        // this.sendFile(id, action === 'add' ? wel : lea, pp, 'pp.jpg', text, null, false, { mentions: [user] })
-                       await this.sendHydrated(id, text, wm, action === 'add' ? wel.toBuffer() : lea.toBuffer(), sgc, (action == 'add' ? ' Welcome 👋' : 'Sayonaraa 👋'), user.split`@`[0], 'USER NUMBER', [
-      [null, null],
+        case 'remove':
+
+            if (chat.welcome) {
+
+                let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
+
+                for (let user of participants) {
+
+                    let pp = './src/avatar_contact.png'
+
+                    try {
+
+                        pp = await this.profilePictureUrl(user, 'image')
+
+                    } catch (e) {
+
+                    } finally {
+
+                        text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
+
+                            (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', await this.getName(user))
+
+                        //this.sendFile(id, pp, 'pp.jpg', text, null, false, { mentions: [user] })
+
+    this.sendHydrated(id, text, wm + '\n\n' + botdate, pp, sgc, (action == 'add' ? '💌 WELCOME' : '🐾 BYE'), user.split`@`[0], '🌹 USER', [
+
+      ['MENU 🎀', '/menu'],
+
+      ['\n\nSAYA PEDO DAN SAYA BANGGA (≧▽≦)', '...'],
+
       [null, null]
+
     ], null, false, { mentions: [user] })
+
                     }
+
                 }
+
             }
-        break
+
+            break
         case 'promote':
             text = (chat.sPromote || this.spromote || conn.spromote || '@user ```is now Admin```')
         case 'demote':
