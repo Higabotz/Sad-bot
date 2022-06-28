@@ -9,5 +9,5 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 handler.help = handler.alias = ['blowjob', 'trap']
 handler.tags = ['weebs']
 handler.command = /^(blowjob|trap)$/i
-
+handler.premium = true
 export default handler
