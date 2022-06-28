@@ -11,14 +11,14 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 		let mime = (q.msg || q).mimetype || q.mediaType || ''
 		if (/webp/g.test(mime)) {
 			let img = await q.download?.()
-			stiker = await addExif(img, packname || '', author || '')
+			stiker = await addExif(img, packname || '', author || `☂︎ Ehh...Mau nyolong yahh...\n\n⫹⫺ By Eful |Oreki-bot\nwa.me/${global.nomorbot}`)
 		} else if (/image/g.test(mime)) {
 			let img = await q.download?.()
-			stiker = await createSticker(img, false, packname, author)
+			stiker = await createSticker(img, false, packname || '', author || `☂︎ Ehh...Mau nyolong yahh...\n\n⫹⫺ By Eful |Oreki-bot\nwa.me/${global.nomorbot}`)
 		} else if (/video/g.test(mime)) {
 		//	if ((q.msg || q).seconds > 10) throw 'Max 10 seconds!'
 			let img = await q.download?.()
-			stiker = await mp4ToWebp(img, { pack: packname, author: author })
+			stiker = await mp4ToWebp(img, false, packname || '', author || `☂︎ Ehh...Mau nyolong yahh...\n\n⫹⫺ By Eful |Oreki-bot\nwa.me/${global.nomorbot}`)
 		} else if (args[0] && isUrl(args[0])) {
 			stiker = await createSticker(false, args[0], '', author, 20)
 		} else throw `Reply an image/video/sticker with command ${usedPrefix + command}`
@@ -33,7 +33,7 @@ handler.help = ['stiker']
 handler.tags = ['general']
 handler.alias = ['stiker', 'sticker', 'sgif', 'stikergif', 'stickergif']
 handler.command = /^s(tic?ker)?(gif)?$/i
-
+handler.register = false
 export default handler
 
 const isUrl = (text) => text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png)/, 'gi'))
