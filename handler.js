@@ -277,7 +277,7 @@ if (!isNumber(user.ayam)) user.ayam = 0
               wallet: 0,
               bank: 0,
               health: 100,
-              limit: 20,
+              limit: 10,
               potion: 10,
               trash: 0,
               wood: 0,
