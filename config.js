@@ -5,6 +5,8 @@ import moment from 'moment-timezone'
 
 global.owner = [
   ['628551572740'],
+  ['6282112731309'],
+  ['6281326162010'],
   ['6285601700562', 'Eful-sama', true]
   // [number, dia creator/owner?, dia developer?]
 ] // Put your number here
