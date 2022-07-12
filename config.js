@@ -4,6 +4,7 @@ import { watchFile, unwatchFile } from 'fs'
 import moment from 'moment-timezone'
 
 global.owner = [
+  ['628551572740'],
   ['6282112731309'],
   ['6281326162010'],
   ['6285601700562', 'kang nyolong', true]
